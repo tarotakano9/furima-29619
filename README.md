@@ -50,7 +50,7 @@ has_one :shipping_address
 | Column             | Type    | Options                        | 
 | ------------------ | ------- | ------------------------------ | 
 | postal_code        | string  | null: false                    | 
-| prefecture_id      | string  | null: false                    | 
+| prefecture_id      | integer | null: false                    | 
 | city               | string  | null: false                    | 
 | address_line       | string  | null: false                    | 
 | building           | string  |                                | 
