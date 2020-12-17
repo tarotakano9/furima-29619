@@ -2,8 +2,8 @@
 
 | Column             | Type    | Options                   | 
 | ------------------ | ------- | ------------------------- | 
-| nickname           | string  | null: false, unique: true | 
-| mail               | string  | null: false, unique: true | 
+| nickname           | string  | null: false,              | 
+| email              | string  | null: false, unique: true | 
 | encrypted_password | integer | null: false               | 
 | family_name        | string  | null: false               | 
 | first_name         | string  | null: false               | 
@@ -19,13 +19,13 @@ has_many :phachase_records
 
 | Column                        | Type    | Options                        | 
 | ----------------------------- | ------- | ------------------------------ | 
-| item_name                     | string  | null: false                    | 
+| name                          | string  | null: false                    | 
 | price                         | integer | null: false                    | 
 | description                   | text    | null: false                    | 
 | category_id                   | integer | null: false                    | 
 | condition_id                  | integer | null: false                    | 
 | delivery_fee_id               | integer | null: false                    | 
-| shipment_source_prefecture_id | integer | null: false                    | 
+| prefecture_id                 | integer | null: false                    | 
 | days_to_ship_id               | integer | null: false                    | 
 | user_id                       | integer | null: false, foreign_key: true | 
 
@@ -42,7 +42,7 @@ has_one :phachase_record
 
 ### Association
 belongs_to :user
-belongs_to :phachase_record
+belongs_to :items
 has_one :shipping_address
 
 ## shipping_addresses
