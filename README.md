@@ -4,7 +4,7 @@
 | ------------------ | ------- | ------------------------- | 
 | nickname           | string  | null: false,              | 
 | email              | string  | null: false, unique: true | 
-| encrypted_password | integer | null: false               | 
+| encrypted_password | string  | null: false               | 
 | family_name        | string  | null: false               | 
 | first_name         | string  | null: false               | 
 | family_name_kana   | string  | null: false               | 
@@ -42,7 +42,7 @@ has_one :phachase_record
 
 ### Association
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one :shipping_address
 
 ## shipping_addresses
