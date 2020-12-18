@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
 
   # パスワードの2回入力を必須にする
-  validates :email_confirmation, presence: true
+  validates :encrypted_password_confirmation, presence: true
 
   # アソシエーション
   # has_many :items
