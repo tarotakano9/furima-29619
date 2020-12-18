@@ -4,5 +4,13 @@ ja:
       user: ユーザー
     attributes:
       user:
-        name: 名前
+        nickname: ニックネーム
         email: メールアドレス
+        encrypted_password: パスワード
+        family_name: 苗字
+        first_name: 名前
+        family_name_kana: 苗字(カナ)
+        first_name_kana: 名前(カナ)
+        birth_date: 生年月日
+        encrypted_password_confirmation: パスワード(確認)
+
