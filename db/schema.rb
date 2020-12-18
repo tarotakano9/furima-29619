@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 2020_12_18_061047) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "nickname"
-    t.string "family_name"
-    t.string "first_name"
-    t.string "family_name_kana"
-    t.string "first_name_kana"
-    t.date "birth_date"
+    t.string "nickname", null: false
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "family_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.date "birth_date", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
