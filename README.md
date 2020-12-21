@@ -31,7 +31,7 @@ has_many :phachase_records
 
 ### Association
 belongs_to :user
-has_one :phachase_record
+has_one :purchase_record
 
 ## purchase_records
 
@@ -58,4 +58,4 @@ has_one :shipping_address
 | phachase_record_id | integer | null: false, foreign_key: true |
 
 ### Association
-belongs_to :phachase_record
+belongs_to :purchase_record
