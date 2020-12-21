@@ -7,12 +7,14 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    # 正常系
     context '新規登録成功' do
       it '全ての項目が正常に入力されていれば成功' do
         expect(@user).to be_valid
       end
     end
 
+    # 異常系
     context '新規登録失敗' do
       it 'ニックネームが空だと失敗' do
         @user.nickname = ''
@@ -51,7 +53,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       # 以下本人確認
-
       # お名前(全角)
       it '苗字が空だと失敗' do
         @user.family_name = ''
