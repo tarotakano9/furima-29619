@@ -13,7 +13,7 @@ class User < ApplicationRecord
   # バリデーション
   validates :nickname, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :encrypted_password, presence: true, confirmation: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, presence: true, confirmation: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
   validates :family_name, presence: true, format: { with: VALID_NAME_REGEX }
   validates :first_name, presence: true, format: { with: VALID_NAME_REGEX }
   validates :family_name_kana, presence: true, format: { with: VALID_NAME_KANA_REGEX }
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
 
   # パスワードの2回入力を必須にする
-  validates :encrypted_password_confirmation, presence: true
+  validates :password_confirmation, presence: true
 
   # アソシエーション
   # has_many :items
