@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # 正規表現
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
-  VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze
+  VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
   # バリデーション
   validates :nickname, presence: true
