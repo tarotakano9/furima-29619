@@ -16,16 +16,16 @@ class User < ApplicationRecord
     validates :birth_date
     # パスワードの2回入力を必須にする
     validates :password_confirmation
+  end
 
-    with_options format: { with: VALID_NAME_REGEX } do
-      validates :family_name
-      validates :first_name
-    end
+  with_options presence: true, format: { with: VALID_NAME_REGEX } do
+    validates :family_name
+    validates :first_name
+  end
 
-    with_options format: { with: VALID_NAME_KANA_REGEX } do
-      validates :family_name_kana
-      validates :first_name_kana
-    end
+  with_options presence: true, format: { with: VALID_NAME_KANA_REGEX } do
+    validates :family_name_kana
+    validates :first_name_kana
   end
 
   # アソシエーション
