@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,17 +9,24 @@ class User < ApplicationRecord
   VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
   # バリデーション
-  validates :nickname, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :password, presence: true, confirmation: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
-  validates :family_name, presence: true, format: { with: VALID_NAME_REGEX }
-  validates :first_name, presence: true, format: { with: VALID_NAME_REGEX }
-  validates :family_name_kana, presence: true, format: { with: VALID_NAME_KANA_REGEX }
-  validates :first_name_kana, presence: true, format: { with: VALID_NAME_KANA_REGEX }
-  validates :birth_date, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+    validates :password, confirmation: true, length: { minimum: 6 }, format: { with: VALID_PASSWORD_REGEX }
+    validates :birth_date
+    # パスワードの2回入力を必須にする
+    validates :password_confirmation
 
-  # パスワードの2回入力を必須にする
-  validates :password_confirmation, presence: true
+    with_options format: { with: VALID_NAME_REGEX } do
+      validates :family_name
+      validates :first_name
+    end
+
+    with_options format: { with: VALID_NAME_KANA_REGEX } do
+      validates :family_name_kana
+      validates :first_name_kana
+    end
+  end
 
   # アソシエーション
   # has_many :items
