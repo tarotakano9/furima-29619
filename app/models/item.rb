@@ -2,6 +2,10 @@ class Item < ApplicationRecord
   # ActiveHashで生成したcategoryモデルと紐づける
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
+  belongs_to :condition
+  belongs_to :days_to_ship
+  belongs_to :delivery_fee
+  belongs_to :prefecture
 
   # ActiveStorageとの紐付け
   has_one_attached :image
