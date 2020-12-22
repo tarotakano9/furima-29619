@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   # バリデーションを設定する
   with_options presence: true do
-    validetes :name
+    validetes :name, length: { maximum: 40 }
     validetes :price
     validetes :description
   end
