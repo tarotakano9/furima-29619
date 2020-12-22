@@ -17,10 +17,18 @@ class Item < ApplicationRecord
   # バリデーションを設定する
   with_options presence: true do
     validetes :name, length: { maximum: 40 }
-    validetes :price
-    validetes :description
+    validetes :price, numericality: {
+      only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
+    }
+    validetes :description, length: { maximum: 1000 }
   end
 
   # カテゴリーが「--」の時は保存できないようにする
-  validetes :category_id, numericality: { other_than: 1 }
+  with_options presence: true, numericality: { other_than: 1 } do
+    validetes :category_id
+    validates :condition
+    validates :days_to_ship
+    validates :delivery_fee
+    validates :prefecture
+  end
 end
