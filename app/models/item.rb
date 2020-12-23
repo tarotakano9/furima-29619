@@ -1,4 +1,4 @@
-class Item < ApplicationRecord  
+class Item < ApplicationRecord
   # ActiveHashで生成したcategoryモデルと紐づける
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -9,7 +9,7 @@ class Item < ApplicationRecord
 
   # ActiveStorageとの紐付け
   has_one_attached :image
-  
+
   # アソシエーション
   belongs_to :user
   # has_one :purchase_record
@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :price, numericality: {
-      only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
+      only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
     }
     validates :description, length: { maximum: 1000 }
     validates :image

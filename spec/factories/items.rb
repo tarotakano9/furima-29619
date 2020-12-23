@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :item do
     # ダミーデータ用の乱数を生成
-    random = Random.new()
-    dammy_price = random.rand(300..9999999)
+    random = Random.new
+    dammy_price = random.rand(300..9_999_999)
     dammy_category_id = random.rand(2..11)
     dammy_condition_id = random.rand(2..8)
     dammy_delivery_fee_id = random.rand(2..3)
