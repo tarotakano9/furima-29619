@@ -21,6 +21,7 @@ class Item < ApplicationRecord
       only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
     }
     validates :description, length: { maximum: 1000 }
+    validates :image
   end
 
   # カテゴリーが「--」の時は保存できないようにする
