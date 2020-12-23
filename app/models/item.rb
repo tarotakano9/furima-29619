@@ -26,9 +26,9 @@ class Item < ApplicationRecord
   # カテゴリーが「--」の時は保存できないようにする
   with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id
-    validates :condition
-    validates :days_to_ship
-    validates :delivery_fee
-    validates :prefecture
+    validates :condition_id
+    validates :days_to_ship_id
+    validates :delivery_fee_id
+    validates :prefecture_id
   end
 end
