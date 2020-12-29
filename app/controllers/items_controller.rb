@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show] # 今後editアクションでも使いそう
 
   def index
-    @items = Item.includes(:user).order(id: "DESC")
+    @items = Item.includes(:user).order(id: 'DESC')
   end
 
   def new
