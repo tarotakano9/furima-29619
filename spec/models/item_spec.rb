@@ -33,7 +33,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'カテゴリーが空だと失敗' do
-        @item.category_id = ""
+        @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it '商品の状態が空だと失敗' do
-        @item.condition_id = ""
+        @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it '発送料の負担が空だと失敗' do
-        @item.delivery_fee_id = ""
+        @item.delivery_fee_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
@@ -63,7 +63,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
       it '発送元の地域が空だと失敗' do
-        @item.prefecture_id = ""
+        @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -73,7 +73,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it '発送までの日数が空だと失敗' do
-        @item.days_to_ship_id = ""
+        @item.days_to_ship_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
