@@ -6,8 +6,7 @@ class Condition < ActiveHash::Base
     { id: 4, name: '目立った傷や汚れなし' },
     { id: 5, name: 'やや傷や汚れあり' },
     { id: 6, name: '傷や汚れあり' },
-    { id: 7, name: '全体的に状態が悪い' },
-    { id: 8, name: '家電・スマホ・カメラ' }
+    { id: 7, name: '全体的に状態が悪い' }
   ]
 
   include ActiveHash::Associations
