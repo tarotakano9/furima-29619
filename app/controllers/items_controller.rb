@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_item, only: [:show] # 今後editアクションでも使いそう
 
   def index
-    @item = Item.all
+    @items = Item.all
   end
 
   def new
@@ -18,6 +19,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def item_params
@@ -26,5 +30,9 @@ class ItemsController < ApplicationController
       :condition_id, :delivery_fee_id, :prefecture_id,
       :days_to_ship_id, :user, :image
     ).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
