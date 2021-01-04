@@ -33,6 +33,8 @@ class ItemsController < ApplicationController
       redirect_to @item
     else
       render :edit
+    end
+  end
 
   def destroy
     if current_user.id == @item.user.id
