@@ -15,7 +15,7 @@ class PurchaseRecordShippingAddress
 
   # バリデーション
   with_options presence: true do
-    validates :postal_code,   format: { with: VALID_POSRAL_CODE_REGEX }
+    validates :postal_code,   format: { with: VALID_POSTAL_CODE_REGIX }
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :city
     validates :address_line
@@ -27,7 +27,7 @@ class PurchaseRecordShippingAddress
     # ユーザーの情報を保存して変数userに格納
     user = User.create(nickname: nickname, email: email, password: password, family_name: family_name, first_name: first_name, family_name_kana: family_name_kana, first_name_kana: first_name_kana, birth_date: birth_date)
     # 商品の情報を保存して変数itemに格納
-    item = Item.create(name: name, price: price, description: description, category_id: category_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, days_to_ship_id: days_to_ship_id, user_id, user.id)
+    item = Item.create(name: name, price: price, description: description, category_id: category_id, delivery_fee_id: delivery_fee_id, prefecture_id: prefecture_id, days_to_ship_id: days_to_ship_id, user_id: user.id)
 
     # 購入記録を保存して変数purchase_recordに格納
     purchase_record = PurchaseRecord.create(user_id: user.id, item_id: item.id)
