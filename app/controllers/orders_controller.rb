@@ -1,25 +1,24 @@
 class OrdersController < ApplicationController
   def index
+    @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
   end
 
   def create
-    user = current_user
-    item = Item.find(params[:id])
-    PurchaseRecord.create(purchase_record_params(user, item))
-    ShippingAddress.create(shipping_address_params(purchase_record))
+   @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address)
+   if @purchase_record_shipping_address.valid?
+    @purchase_record_shipping_address.save
     redirect_to root_path
+   else
+    render action: :index
+   end
   end
 
     private
 
-    def purchase_record_params(user, item)
-      params.merge(user_id: user.id, item_id: item.id)
-    end
-
-    def shipping_address_params(purchase_record)
-      params.permit
-        :postal_code, :prefecture_id, :city,
-        :address_line, :building, :phone_number
-      ).merge(purchase_record_id: purchase_record.id)
+    # 全てのストロングパラメーターを1つに結合
+    def purchase_record_shipping_address_params
+      params.require(:purchase_record_shipping_address).permit(
+        :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number
+      )
     end
 end
