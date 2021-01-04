@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+
   def index
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
-   @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address)
+   @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
    if @purchase_record_shipping_address.valid?
     @purchase_record_shipping_address.save
     redirect_to root_path
@@ -21,5 +22,9 @@ class OrdersController < ApplicationController
       params.require(:purchase_record_shipping_address).permit(
         :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number
       )
+    end
+
+    def set_item
+      @item = Item.find(params[:item_id])
     end
 end
