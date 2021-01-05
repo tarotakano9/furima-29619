@@ -65,3 +65,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'active_hash'
 gem "aws-sdk-s3", require: false
+gem 'payjp'
+gem 'pry-rails'
