@@ -3,20 +3,22 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    if current_user == @item.user
+    if current_user == @item.user || PurchaseRecord.exists?(item_id: @item.id)
       redirect_to root_path
     end
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
   end
 
   def create
-    @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
-    if @purchase_record_shipping_address.valid?
-      pay_item
-      @purchase_record_shipping_address.save(current_user, @item)
-      return redirect_to root_path
-    else
-      render action: :index
+    unless PurchaseRecord.exists?(item_id: @item.id)
+      @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
+      if @purchase_record_shipping_address.valid?
+        pay_item
+        @purchase_record_shipping_address.save(current_user, @item)
+        return redirect_to root_path
+      else
+        render action: :index
+      end
     end
   end
 
