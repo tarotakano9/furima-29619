@@ -137,12 +137,11 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
-          <%# if purchase_recordsにitemが存在している? %> <%# 商品購入機能実装後にこの機能は実装 %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-          <%# end %>
+          <% if PurchaseRecord.exists?(item_id: item.id) %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
 
         </div>
 
