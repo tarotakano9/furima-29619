@@ -10,14 +10,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-   @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
-   if @purchase_record_shipping_address.valid?
-    pay_item
-    @purchase_record_shipping_address.save
-    return redirect_to root_path
-   else
-    render action: :index
-   end
+    @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
+    if @purchase_record_shipping_address.valid?
+      pay_item
+      @purchase_record_shipping_address.save(current_user, @item)
+      return redirect_to root_path
+    else
+      render action: :index
+    end
   end
 
     private
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
       params.require(:purchase_record_shipping_address).permit(
         :postal_code, :prefecture_id, :city,
         :address_line, :building, :phone_number,
-        :purchase_record_id, :item_id
+        :purchase_record_id
       ).merge(token: params[:token])
     end
 
