@@ -38,5 +38,6 @@ FactoryBot.define do
   address_line { dammy_address_line }
   building { dammy_building }
   phone_number { dammy_phone_number }
+  token {"tok_abcdefghijk00000000000000000"}
   end
 end
