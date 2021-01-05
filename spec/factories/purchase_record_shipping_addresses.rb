@@ -10,24 +10,26 @@ FactoryBot.define do
     dammy_phone_number = "#{dammy_phone_number}#{num}"
   end
 
+  dammy_head = ""
   3.times do
     num = random.rand(0..9)
-    dammy_postal_code_head = "#{dammy_postal_code_head}#{num}"
+    dammy_head = "#{dammy_head}#{num}"
   end
 
+  dammy_tail = ""
   4.times do
     num = random.rand(0..9)
-    dammy_postal_code_tail = "#{dammy_postal_code_tail}#{num}"
+    dammy_tail = "#{dammy_tail}#{num}"
   end
   
-  dammy_postal_code = "#{dammy_postal_code_head}-#{dammy_postal_code_tail}"
+  dammy_postal_code = "#{dammy_head}-#{dammy_tail}"
   dammy_prefecture_id = random.rand(2..48)
   dammy_purchase_record_id = random.rand(1..99)
 
   # gimeiで住所を生成
   address = Gimei.address
   dammy_city = address.city.kanji
-  dammy_address_line = "#{address.town.kanji}#{random.rand(1..99)}"
+  dammy_address_line = "#{address.town.kanji}#{random.rand(1..99)}-#{random.rand(1..99)}"
   dammy_building = address.town.kanji
     
   postal_code { dammy_postal_code }
@@ -36,9 +38,5 @@ FactoryBot.define do
   address_line { dammy_address_line }
   building { dammy_building }
   phone_number { dammy_phone_number }
-  purchase_record
-  user
-  item
-
   end
 end

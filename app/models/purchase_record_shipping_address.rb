@@ -1,12 +1,6 @@
 class PurchaseRecordShippingAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number, :purchase_record_id
-
-  # purchase_recordに関するバリデーション
-  with_options presence: true do
-    validates :user_id
-    validates :item_id
-  end
+  attr_accessor :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number, :purchase_record_id
 
   # shipping_addressに関するバリデーション
   # 正規表現
@@ -20,7 +14,6 @@ class PurchaseRecordShippingAddress
     validates :city
     validates :address_line
     validates :phone_number,  format: { with: VALID_PHONE_NUMBER_REGIX }
-    validates :purchase_record_id
   end
 
   def save
