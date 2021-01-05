@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
 
   def index
+    if current_user == @item.user
+      redirect_to root_path
+    end
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
   end
 
