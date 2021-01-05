@@ -12,8 +12,9 @@ class OrdersController < ApplicationController
   def create
    @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
    if @purchase_record_shipping_address.valid?
+    pay_item
     @purchase_record_shipping_address.save
-    redirect_to root_path
+    return redirect_to root_path
    else
     render action: :index
    end
@@ -24,11 +25,22 @@ class OrdersController < ApplicationController
     # 全てのストロングパラメーターを1つに結合
     def purchase_record_shipping_address_params
       params.require(:purchase_record_shipping_address).permit(
-        :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number
-      )
+        :postal_code, :prefecture_id, :city,
+        :address_line, :building, :phone_number,
+        :purchase_record_id, :item_id
+      ).merge(token: params[:token])
     end
 
     def set_item
       @item = Item.find(params[:item_id])
+    end
+
+    def pay_item
+      Payjp::api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+      amount:   @item.price,
+      card:     purchase_record_shipping_address_params[:token],
+      currency: 'jpy'
+    )
     end
 end
