@@ -30,5 +30,5 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :items
-  # has_many :phachase_records
+  has_many :phachase_records
 end

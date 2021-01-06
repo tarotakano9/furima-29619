@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  # ActiveHashで生成したcategoryモデルと紐づける
+  # ActiveHashで生成したモデルと紐づける
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
-  # has_one :purchase_record
+  has_one :purchase_record
 
   # バリデーションを設定する
   with_options presence: true do
