@@ -1,7 +1,7 @@
 class PurchaseRecordShippingAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address_line, :building, :phone_number,
-                :token, :authenticity_token
+                :token, :authenticity_token, :item_id, :user_id
 
   # 正規表現
   VALID_POSTAL_CODE_REGIX = /\A\d{3}-\d{4}\z/.freeze # 3桁 - 4桁の半角数字
@@ -15,6 +15,8 @@ class PurchaseRecordShippingAddress
     validates :address_line
     validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGIX }
     validates :token
+    validates :item_id
+    validates :user_id
   end
 
   def save(user, item)

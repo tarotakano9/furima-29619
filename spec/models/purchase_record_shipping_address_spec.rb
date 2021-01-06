@@ -4,12 +4,16 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
   # ダミーデータの生成
   before do
     @purchase_record_shipping_address = FactoryBot.build(:purchase_record_shipping_address)
-    @purchase_record = FactoryBot.build(:purchase_record)
   end
 
   # 正常系
   context '購入成功' do
     it '全ての項目が正常に入力されていれば成功' do
+      expect(@purchase_record_shipping_address).to be_valid
+    end
+
+    it '建物名が抜けていても成功' do
+      @purchase_record_shipping_address.building = nil
       expect(@purchase_record_shipping_address).to be_valid
     end
   end
@@ -118,10 +122,26 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
         'Phone number is invalid'
       )
     end
-    it 'tokenが空では登録できないこと' do
+    it 'tokenが空では登録できない' do
       @purchase_record_shipping_address.token = nil
       @purchase_record_shipping_address.valid?
-      expect(@purchase_record_shipping_address.errors.full_messages).to include("Token can't be blank")
+      expect(@purchase_record_shipping_address.errors.full_messages).to include(
+        "Token can't be blank"
+      )
+    end
+    it 'userが紐づいていないと登録できない' do
+      @purchase_record_shipping_address.user_id = nil
+      @purchase_record_shipping_address.valid?
+      expect(@purchase_record_shipping_address.errors.full_messages).to include(
+        "User can't be blank"
+      )
+    end
+    it 'itemが紐づいていないと登録できない' do
+      @purchase_record_shipping_address.item_id = nil
+      @purchase_record_shipping_address.valid?
+      expect(@purchase_record_shipping_address.errors.full_messages).to include(
+        "Item can't be blank"
+      )
     end
   end
 end

@@ -24,6 +24,8 @@ FactoryBot.define do
     dammy_postal_code = "#{dammy_head}-#{dammy_tail}"
     dammy_prefecture_id = random.rand(2..48)
     dammy_purchase_record_id = random.rand(1..99)
+    dammy_user_id = random.rand(1..99)
+    dammy_item_id = random.rand(1..99)
 
     # gimeiで住所を生成
     address = Gimei.address
@@ -38,5 +40,8 @@ FactoryBot.define do
     building { dammy_building }
     phone_number { dammy_phone_number }
     token { 'tok_abcdefghijk00000000000000000' }
+
+    association :user_id, factory: :user
+    association :item_id, factory: :item
   end
 end
