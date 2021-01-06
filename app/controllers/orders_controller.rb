@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       @purchase_record_shipping_address = PurchaseRecordShippingAddress.new(purchase_record_shipping_address_params)
       if @purchase_record_shipping_address.valid?
         pay_item
-        @purchase_record_shipping_address.save(current_user, @item)
+        @purchase_record_shipping_address.save
         redirect_to root_path
       else
         render action: :index
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
       :postal_code, :prefecture_id, :city,
       :address_line, :building, :phone_number,
       :purchase_record_id
-    ).merge(token: params[:token])
+    ).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
 
   def set_item

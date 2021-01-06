@@ -19,9 +19,9 @@ class PurchaseRecordShippingAddress
     validates :user_id
   end
 
-  def save(user, item)
+  def save
     # purchase_recordを保存
-    purchase_record = PurchaseRecord.create(user_id: user.id, item_id: item.id)
+    purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
     # shipping_addressを保存
     ShippingAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_line: address_line,
                            building: building, phone_number: phone_number, purchase_record_id: purchase_record.id)
