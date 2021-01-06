@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
-  has_one :purchase_record
+  has_one :purchase_record, dependent: :destroy
 
   # バリデーションを設定する
   with_options presence: true do
