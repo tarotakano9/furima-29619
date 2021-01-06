@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user.id
+    unless current_user.id == @item.user.id
       redirect_to action: :show
     end
   end
